@@ -58,28 +58,20 @@
 								</div>
 							</c:if>
 							<div class="input-group input-sm">
-								<label class="input-group-addon" for="userId
-"> <i
+								<label class="input-group-addon" for="userId"> <i
 									class="fa fa-user"></i></label> <input type="text" class="form-control"
-									id="userId" name="userId"
-									placeholder="<spring:message
-code='login.form.userId'/>"
+									id="userId" name="userId" placeholder="<spring:message code='login.form.userId'/>"
 									required>
 							</div>
 							<div class="input-group input-sm">
 								<label class="input-group-addon" for="password"> <i
-									class="fa fa-lock"></i></label> <input type="password"
-									class="form-control" id="password" name="password"
-									placeholder="<spring:message
-code='login.form.password'/>"
+									class="fa fa-lock"></i></label> <input type="password" class="form-control" id="password" name="password"
+									placeholder="<spring:message code='login.form.password'/>"
 									required>
 							</div>
 							<div class="form-actions">
-								<input type="submit"
-									class="btn btn-block btn-primary
-btn-default"
-									value="<spring:message
-code='login.form.submit'/>">
+								<input type="submit" class="btn btn-block btn-primary btn-default" 
+									value="<spring:message code='login.form.submit'/>">
 							</div>
 						</form>
 					</div>
