@@ -1,3 +1,4 @@
+  
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -15,8 +16,8 @@
 <body>
 	<section>
 		<div class="pull-right" style="padding-right: 50px">
-			<a href="?language=ko">한글</a>|<a href="?language=en">English</a>
-			<a href="<c:url value="/logout" />">로그아웃</a>
+			<a href="?language=ko">한글</a>|<a href="?language=en">English</a> <a
+				href="<c:url value="/logout" />">로그아웃</a>
 		</div>
 	</section>
 	<section>
@@ -29,7 +30,9 @@
 	</section>
 	<section class="container">
 		<form:form method="POST" modelAttribute="newProduct"
+			onsubmit="return validateUnits(this)"
 			class="form-horizontal" enctype="multipart/form-data">
+			<form:errors path="*" cssClass="alert alert-danger" element="div" />
 			<fieldset>
 				<legend>신상품 정보 입력</legend>
 				<span>${errorMsg}</span>
@@ -40,6 +43,7 @@
 					<div class="col-lg-10">
 						<form:input id="productId" path="productId" type="text"
 							class="form:input-large" />
+						<form:errors path="productId" cssClass="text-danger" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -49,6 +53,7 @@
 					<div class="col-lg-10">
 						<form:input id="name" path="name" type="text"
 							class="form:input-large" />
+						<form:errors path="name" cssClass="text-danger" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -58,6 +63,7 @@
 					<div class="col-lg-10">
 						<form:input id="unitPrice" path="unitPrice" type="text"
 							class="form:input-large" />
+						<form:errors path="unitPrice" cssClass="text-danger" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -76,6 +82,7 @@
 					<div class="col-lg-10">
 						<form:input id="category" path="category" type="text"
 							class="form:input-large" />
+						<form:errors path="category" cssClass="text-danger" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -85,6 +92,7 @@
 					<div class="col-lg-10">
 						<form:input id="unitsInStock" path="unitsInStock" type="text"
 							class="form:input-large" />
+						<form:errors path="unitsInStock" cssClass="text-danger" />
 					</div>
 				</div>
 
@@ -115,6 +123,7 @@
 					<div class="col-lg-10">
 						<form:input id="productImage" path="productImage" type="file"
 							class="form:input-large" />
+						<form:errors path="productImage" cssClass="text-danger"/>
 					</div>
 				</div>
 				<!-- 상품 안내서 입력 -->
@@ -136,5 +145,12 @@
 			</fieldset>
 		</form:form>
 	</section>
+	<script type="text/javascript">
+		function validateUnits(form) {
+			if (!document.getElementById("unitsInStock").value) {
+				document.getElementById("unitsInStock").value = "0";
+			}
+		}
+	</script>
 </body>
 </html>
