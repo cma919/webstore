@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,22 +13,23 @@
 </head>
 <body>
 	<section>
+		<div class="pull-right" style="padding-right: 50px">
+			<a href="?lang=ko">한글</a>|<a href="?lang=en">Eng</a> <a
+				href="<c:url value='/logout'/>"> <spring:message
+					code="logout.anchor.text" /></a>
+		</div>
+	</section>
+	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>고객 목록</h1>
-				<p>모든 고객 목록</p>
+				<h1>
+					<spring:message code="customers.h1" />
+				</h1>
+				<p>
+					<spring:message code="customers.h1.p1" />
+				</p>
 			</div>
 		</div>
-	</section>
-	<section class="container">
-		<div class="pull-right" style="padding-right: 50px">
-			<a href="<c:url value="/logout" />">로그아웃</a>
-		</div>
-	</section>
-
-	<section class="container">
-		<a href="/webstore">홈으로</a>
-		<hr>
 	</section>
 	<section class="container">
 		<div class="row">
@@ -36,9 +38,14 @@
 					<div class="thumbnail">
 						<div class="caption">
 							<h3>${customer.name}</h3>
-							<p>${customer.address}</p>
 							<p>${customer.customerId}</p>
-							<p>주문 건수 : ${customer.noOfOrdersMade}</p>
+							<p>${customer.billingAddress.zipCode}</p>
+							<p>${customer.billingAddress.wideCiDo}</p>
+							<p>${customer.billingAddress.ciGoonGu}</p>
+							<p>${customer.billingAddress.streetName}</p>
+							<p>${customer.billingAddress.buildingNo}</p>
+							<p>${customer.billingAddress.unitNo}</p>
+							<p>${customer.phoneNumber}</p>
 						</div>
 					</div>
 				</div>

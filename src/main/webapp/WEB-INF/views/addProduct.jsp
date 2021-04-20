@@ -1,4 +1,3 @@
-  
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -14,12 +13,6 @@
 <title>신상품 정보</title>
 </head>
 <body>
-	<section>
-		<div class="pull-right" style="padding-right: 50px">
-			<a href="?language=ko">한글</a>|<a href="?language=en">English</a> <a
-				href="<c:url value="/logout" />">로그아웃</a>
-		</div>
-	</section>
 	<section>
 		<div class="jumbotron">
 			<div class="container">
