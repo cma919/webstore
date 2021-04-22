@@ -28,8 +28,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import org.springframework.web.servlet.view.xml.MarshallingView;
 import org.springframework.web.util.UrlPathHelper;
@@ -90,7 +88,7 @@ public class WebStoreContextConfig extends WebMvcConfigurerAdapter {
 		Set<Validator> springValidators = new HashSet<Validator>();
 		springValidators.add(new UnitsInStockValidator());
 		ProductValidator productValidator = new ProductValidator();
-		springValidators.add(productImageValidator());
+//		springValidators.add(productImageValidator());
 		
 		productValidator.setSpringValidators(springValidators);
 		return productValidator;

@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-import com.cwpark.webstore.domain.User;
+import com.cwpark.webstore.domain.UserWS;
 import com.cwpark.webstore.service.UserService;
 
 @Configuration
@@ -24,8 +24,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
-		List<User> users = userService.getAllUsers();
-		for (User u : users) {
+		List<UserWS> users = userService.getAllUsers();
+		for (UserWS u : users) {
 			if ("admin".equals(u.getUsername())) {
 				auth.inMemoryAuthentication().withUser(u.getUsername()).password(u.getPassword()).roles("USER",
 						"ADMIN");
@@ -40,11 +40,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
-		httpSecurity.formLogin().loginPage("/login").usernameParameter("userId").passwordParameter("password");
-		httpSecurity.formLogin().defaultSuccessUrl("/market/products/add").failureUrl("/login?error");
+		httpSecurity.formLogin()
+			.loginPage("/login")
+			.usernameParameter("userId")
+			.passwordParameter("password")
+			.defaultSuccessUrl("/market/products")
+			.successHandler(authenticationSuccessHandler)
+			.failureUrl("/login?error");
+		
 		httpSecurity.logout().logoutSuccessUrl("/login?logout");
-		httpSecurity.formLogin().successHandler(authenticationSuccessHandler).defaultSuccessUrl("/market/customers")
-				.failureUrl("/login?error");
 		httpSecurity.exceptionHandling().accessDeniedPage("/login?accessDenied");
 		httpSecurity.authorizeRequests().antMatchers("/").permitAll().antMatchers("/**/products/add")
 				.access("hasRole('ADMIN')").antMatchers("/**/customers/add").access("hasRole('SERVICE')")

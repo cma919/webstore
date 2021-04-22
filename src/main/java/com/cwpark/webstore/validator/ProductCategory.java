@@ -17,7 +17,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = ProductCategoryValidator.class)
 @Documented
 public @interface ProductCategory {
-	String message() default "{com.packt.webstore.validator.ProductCategory.message}";
+	String message() default "{com.cwpark.webstore.validator.ProductCategory.message}";
 	Class<?>[] groups() default {};
 	public abstract Class<? extends Payload>[] payload() default {};
 }

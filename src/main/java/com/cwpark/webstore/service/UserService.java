@@ -2,8 +2,8 @@ package com.cwpark.webstore.service;
 
 import java.util.List;
 
-import com.cwpark.webstore.domain.User;
+import com.cwpark.webstore.domain.UserWS;
 
 public interface UserService {
-	List<User> getAllUsers();
+	List<UserWS> getAllUsers();
 }
